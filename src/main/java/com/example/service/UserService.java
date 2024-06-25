@@ -9,19 +9,20 @@ import org.springframework.stereotype.Service;
 
 import com.example.model.Account;
 import com.example.model.User;
-import com.example.respository.AccountRespository;
-import com.example.respository.UserRespository;
+import com.example.respository.AccountRepository;
+import com.example.respository.UserRepository;
+
 
 @Service
 public class UserService {
 
     @Autowired
-    UserRespository userRespository;
+    UserRepository userRepository;
 
-    @Autowired
-    AccountRespository accountRespository;
+    // @Autowired
+    // AccountRepository accountRepository;
     
-    public ResponseEntity<User> saveUser(User user){
+    public User saveUser(User user){
         Account account = new Account();
         Random random = new Random();
         StringBuilder sb = new StringBuilder();
@@ -34,8 +35,8 @@ public class UserService {
         }
         account.setBalance(user.getBalance());
         account.setAccountNumber(sb.toString());
-        userRespository.save(user);
-        accountRespository.save(account);
-        return new ResponseEntity<>(user,HttpStatus.OK);
+        account.setUser(user);
+        user.setAccount(account);
+        return userRepository.save(user);
     }
 }
