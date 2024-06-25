@@ -30,11 +30,12 @@ public class UserService {
             int num = random.nextInt(0,9);
             sb.append(num);
         }
-        if(user.getAccountType()!=null){
+        if(user.getAccountType()!=null){    
             account.setAccountType(user.getAccountType());
         }
-        account.setBalance(user.getBalance());
+        
         account.setAccountNumber(sb.toString());
+        account.setActive(false);
         account.setUser(user);
         user.setAccount(account);
         return userRepository.save(user);

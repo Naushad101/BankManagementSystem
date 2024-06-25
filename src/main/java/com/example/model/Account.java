@@ -27,4 +27,6 @@ public class Account {
     @JsonIgnoreProperties("account")
     @JoinColumn(name="user_id")
     User user;
+
+    boolean active = false;
 }

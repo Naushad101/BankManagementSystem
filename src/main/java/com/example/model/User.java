@@ -28,10 +28,7 @@ public class User {
     String panNumber;
     String address;
     String accountType;
-    int balance;
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     @JsonIgnoreProperties("user")
     Account account;
-
-    boolean active = true;
 }
